@@ -18,7 +18,7 @@ public class GoogleSearchTest {
     public void openGoogle() {
         driver.get("https://www.google.com");
         System.out.println("Google homepage opened successfully");
-        Assert.assertEquals(driver.getTitle(),"google123");
+        Assert.assertEquals(driver.getTitle(),"Google");
     }
 
     @AfterTest
