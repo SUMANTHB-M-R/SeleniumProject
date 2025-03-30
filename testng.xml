@@ -2,7 +2,7 @@
 <suite name="Selenium Test Suite">
     <test name="Google Search Test">
         <classes>
-            <class name="GoogleSearchTest"/>
+            <class name="TestCases"/>
         </classes>
     </test>
 </suite>

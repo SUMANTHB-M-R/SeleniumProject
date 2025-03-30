@@ -18,7 +18,7 @@ public class TestCases {
     public void openGoogle() {
         driver.get("https://www.google.com");
         System.out.println("Google homepage opened successfully");
-        Assert.assertEquals(driver.getTitle(),"Google1");
+        Assert.assertEquals(driver.getTitle(),"Google12");
     }
     
     @Test(priority = 2)
