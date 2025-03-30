@@ -1,7 +1,7 @@
 import java.io.File
 
-// Define absolute path to the report file
-def workspace = "${JENKINS_HOME}/workspace/SeleniumTestJob"
+// Get the Jenkins workspace path dynamically
+def workspace = "${env.WORKSPACE}"
 def reportPath = "${workspace}/test-output/emailable-report.html"
 
 // Normalize path for Windows
@@ -17,8 +17,8 @@ if (!reportFile.exists()) {
 // Read file content
 def reportContent = reportFile.text
 
-// Extract summary section (ensuring it captures the table)
+// Extract summary section from the report
 def summarySection = (reportContent =~ /<table.*?>.*?<\/table>/s)
 
-// Return Extracted Summary or Default Message
-return summarySection ? summarySection[0] : "⚠️ Test Summary Not Found in the report!"
+// Return extracted summary or default message
+return summarySection ? summarySection[0] : "⚠️ Test Summary Not Found!"
