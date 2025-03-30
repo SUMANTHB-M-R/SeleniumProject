@@ -1,17 +1,20 @@
 import java.io.File
 
-// Get the Jenkins workspace path dynamically
+// Get Jenkins workspace dynamically
 def workspace = "${env.WORKSPACE}"
 def reportPath = "${workspace}/test-output/emailable-report.html"
 
 // Normalize path for Windows
 reportPath = reportPath.replace("/", "\\")
 
+println "Checking for report at: ${reportPath}"
+
 // Check if the file exists
 def reportFile = new File(reportPath)
 
 if (!reportFile.exists()) {
-    return "❌ Error: Report file not found at ${reportPath}"
+    println "❌ Error: Report file not found at ${reportPath}"
+    return "❌ Error: emailable-report.html not found! Make sure TestNG is generating the report."
 }
 
 // Read file content
