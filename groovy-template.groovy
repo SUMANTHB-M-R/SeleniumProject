@@ -1,7 +1,13 @@
 import java.io.File
 
-def workspace = "${env.WORKSPACE}"
-def reportPath = "${workspace}/test-output/emailable-report.html"
+// Use System.getenv() to fetch environment variables
+def workspace = System.getenv("WORKSPACE")
+if (!workspace) {
+    println "❌ Error: WORKSPACE environment variable is not set."
+    return "❌ Error: WORKSPACE not found! Ensure Jenkins is setting the WORKSPACE variable."
+}
+
+def reportPath = workspace + "/test-output/emailable-report.html"
 reportPath = reportPath.replace("/", "\\") // Normalize path for Windows
 
 println "🚀 Debug: Script execution started!"
