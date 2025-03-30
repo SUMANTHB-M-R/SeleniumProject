@@ -1,22 +1,12 @@
-import java.io.File
+println "🚀 Debug: Script execution started!"
+println "🔍 Debug: Checking workspace environment..."
+println "📝 Debug: Preparing to locate the report file..."
 
 def workspace = "${env.WORKSPACE}"
 def reportPath = "${workspace}/test-output/emailable-report.html"
 
-// Normalize path for Windows
-reportPath = reportPath.replace("/", "\\")
+println "📂 Debug: Jenkins Workspace -> ${workspace}"
+println "📄 Debug: Expected Report Path -> ${reportPath.replace('/', '\\')}"
 
-println "🔍 Checking for report at: ${reportPath}"
-
-// Check if file exists before reading
-def reportFile = new File(reportPath)
-if (!reportFile.exists()) {
-    println "❌ Error: Report file not found at ${reportPath}"
-    return "❌ Report file not found! Ensure TestNG is generating reports."
-}
-
-// Read file content
-def reportContent = reportFile.text
-def summarySection = (reportContent =~ /<table.*?>.*?<\/table>/s)
-
-return summarySection ? summarySection[0] : "⚠️ Test Summary Not Found!"
+println "✅ Debug: Script execution completed!"
+return "✔ Script executed successfully without reading the file."
