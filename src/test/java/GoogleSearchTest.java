@@ -14,11 +14,26 @@ public class GoogleSearchTest {
         driver.manage().window().maximize();
     }
 
-    @Test
+    @Test(priority = 1)
     public void openGoogle() {
         driver.get("https://www.google.com");
         System.out.println("Google homepage opened successfully");
         Assert.assertEquals(driver.getTitle(),"Google1");
+    }
+    
+    @Test(priority = 2)
+    public void loginTest() {
+        System.out.println("Executing Login Test");
+    }
+
+    @Test(priority = 3)
+    public void searchTest() {
+        System.out.println("Executing Search Test");
+    }
+
+    @Test(priority = 4)
+    public void checkoutTest() {
+        System.out.println("Executing Checkout Test");
     }
 
     @AfterTest
