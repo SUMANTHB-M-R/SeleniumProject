@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="4" passed="3" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-04-01T00:25:49 IST" name="Selenium Test Suite" finished-at="2025-04-01T00:25:55 IST" duration-ms="5322">
+  <suite started-at="2025-04-01T00:44:24 IST" name="Selenium Test Suite" finished-at="2025-04-01T00:44:28 IST" duration-ms="4327">
     <groups>
     </groups>
-    <test started-at="2025-04-01T00:25:49 IST" name="Google Search Test" finished-at="2025-04-01T00:25:55 IST" duration-ms="5322">
+    <test started-at="2025-04-01T00:44:24 IST" name="Google Search Test" finished-at="2025-04-01T00:44:28 IST" duration-ms="4327">
       <class name="TestCases">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCases@71d44a3]" started-at="2025-04-01T00:25:49 IST" name="setup" finished-at="2025-04-01T00:25:53 IST" duration-ms="3169" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCases@71d44a3]" started-at="2025-04-01T00:44:24 IST" name="setup" finished-at="2025-04-01T00:44:26 IST" duration-ms="2464" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="openGoogle()[pri:1, instance:TestCases@71d44a3]" started-at="2025-04-01T00:25:53 IST" name="openGoogle" finished-at="2025-04-01T00:25:54 IST" duration-ms="1790" status="FAIL">
+        <test-method signature="openGoogle()[pri:1, instance:TestCases@71d44a3]" started-at="2025-04-01T00:44:26 IST" name="openGoogle" finished-at="2025-04-01T00:44:28 IST" duration-ms="1545" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [Google123] but found [Google]]]>
@@ -57,19 +57,19 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openGoogle -->
-        <test-method signature="loginTest()[pri:2, instance:TestCases@71d44a3]" started-at="2025-04-01T00:25:55 IST" name="loginTest" finished-at="2025-04-01T00:25:55 IST" duration-ms="2" status="PASS">
+        <test-method signature="loginTest()[pri:2, instance:TestCases@71d44a3]" started-at="2025-04-01T00:44:28 IST" name="loginTest" finished-at="2025-04-01T00:44:28 IST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginTest -->
-        <test-method signature="searchTest()[pri:3, instance:TestCases@71d44a3]" started-at="2025-04-01T00:25:55 IST" name="searchTest" finished-at="2025-04-01T00:25:55 IST" duration-ms="2" status="PASS">
+        <test-method signature="searchTest()[pri:3, instance:TestCases@71d44a3]" started-at="2025-04-01T00:44:28 IST" name="searchTest" finished-at="2025-04-01T00:44:28 IST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchTest -->
-        <test-method signature="checkoutTest()[pri:4, instance:TestCases@71d44a3]" started-at="2025-04-01T00:25:55 IST" name="checkoutTest" finished-at="2025-04-01T00:25:55 IST" duration-ms="2" status="PASS">
+        <test-method signature="checkoutTest()[pri:4, instance:TestCases@71d44a3]" started-at="2025-04-01T00:44:28 IST" name="checkoutTest" finished-at="2025-04-01T00:44:28 IST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- checkoutTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:TestCases@71d44a3]" started-at="2025-04-01T00:25:55 IST" name="tearDown" finished-at="2025-04-01T00:25:55 IST" duration-ms="243" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:TestCases@71d44a3]" started-at="2025-04-01T00:44:28 IST" name="tearDown" finished-at="2025-04-01T00:44:28 IST" duration-ms="228" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

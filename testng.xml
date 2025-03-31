@@ -6,6 +6,7 @@
     <test name="Google Search Test">
         <classes>
             <class name="TestCases"/>
-        </classes>
+        </classes
+        >
     </test>
 </suite>
