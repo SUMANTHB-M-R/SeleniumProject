@@ -11,13 +11,17 @@ import org.testng.ITestContext;
 import org.testng.xml.XmlSuite;
 
 import java.awt.*;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 
 public class CustomReporter implements IReporter {
 
@@ -41,12 +45,10 @@ public class CustomReporter implements IReporter {
             JFreeChart chart = ChartFactory.createPieChart("Test Results Summary", dataset, true, true, false);
             PiePlot plot = (PiePlot) chart.getPlot();
 
-            // Set colors
             plot.setSectionPaint("Passed", Color.GREEN);
             plot.setSectionPaint("Skipped", Color.ORANGE);
             plot.setSectionPaint("Failed", Color.RED);
 
-            // Label Formatting
             PieSectionLabelGenerator labelGenerator = new StandardPieSectionLabelGenerator(
                     "{0} ({2})", new DecimalFormat("0"), new DecimalFormat("0%")
             );
@@ -56,14 +58,15 @@ public class CustomReporter implements IReporter {
             plot.setLabelOutlinePaint(Color.GRAY);
             plot.setLabelShadowPaint(Color.WHITE);
 
-            // Background
             plot.setBackgroundPaint(new Color(200, 200, 200));
             plot.setOutlinePaint(Color.GRAY);
 
-            File chartImage = new File(outputDirectory + "/piechart.png");
-            ChartUtils.saveChartAsPNG(chartImage, chart, 500, 300);
+            BufferedImage bufferedImage = chart.createBufferedImage(500, 300);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
+            String encodedImage = Base64.getEncoder().encodeToString(byteArrayOutputStream.toByteArray());
 
-            // HTML Report
+            // HTML Report (Using Base64)
             writer.write("<!DOCTYPE html>");
             writer.write("<html xmlns=\"https://www.w3.org/1999/xhtml\">");
             writer.write("<head>");
@@ -72,7 +75,6 @@ public class CustomReporter implements IReporter {
             writer.write("</head>");
             writer.write("<body style=\"font-family: Arial, sans-serif;\">");
 
-            // Suite Summary Table (same as before)
             writer.write("<table style=\"width: 100%; max-width: 800px; margin: 20px auto; border-collapse: collapse; border: 2px solid black;\">");
             writer.write("<tr><th style=\"background-color: #f2f2f2; border: 2px solid black; padding: 10px; text-align: left;\">Test</th><th style=\"background-color: #f2f2f2; border: 2px solid black; padding: 10px; text-align: left;\"># Passed</th><th style=\"background-color: #f2f2f2; border: 2px solid black; padding: 10px; text-align: left;\"># Skipped</th><th style=\"background-color: #f2f2f2; border: 2px solid black; padding: 10px; text-align: left;\"># Failed</th><th style=\"background-color: #f2f2f2; border: 2px solid black; padding: 10px; text-align: left;\">Start Time</th><th style=\"background-color: #f2f2f2; border: 2px solid black; padding: 10px; text-align: left;\">End Time</th></tr>");
             Date startDate = testContext.getStartDate();
@@ -83,7 +85,7 @@ public class CustomReporter implements IReporter {
             writer.write("<tr><td style=\"border: 2px solid black; padding: 10px; text-align: left;\">" + suite.getName() + "</td><td style=\"border: 2px solid black; padding: 10px; text-align: right; background-color: #e6f7e6; color: #389e0d; font-weight: bold;\">" + passedCount + "</td><td style=\"border: 2px solid black; padding: 10px; text-align: right; background-color: #ffe0b3; color: #d97706; font-weight: bold;\">" + skippedCount + "</td><td style=\"border: 2px solid black; padding: 10px; text-align: right; background-color: #ffe6e6; color: #cf1322; font-weight: bold;\">" + failedCount + "</td><td style=\"border: 2px solid black; padding: 10px; text-align: left;\">" + startTime + "</td><td style=\"border: 2px solid black; padding: 10px; text-align: left;\">" + endTime + "</td></tr>");
             writer.write("</table>");
 
-            writer.write("<div style=\"text-align: center;\"><img src=\"piechart.png\" alt=\"Test Results Pie Chart\" style=\"display: block; margin: 20px auto;\"></div>");
+            writer.write("<div style=\"text-align: center;\"><img src=\"data:image/png;base64," + encodedImage + "\" alt=\"Test Results Pie Chart\" style=\"display: block; margin: 20px auto;\"></div>");
 
             writer.write("</body>");
             writer.write("</html>");
